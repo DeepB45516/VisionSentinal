@@ -17,11 +17,15 @@ from modules.risk_scoring           import RiskScorer
 from modules.temporal_filter        import TemporalFilter
 from flask import Flask, Response, request, jsonify
 from flask_cors import CORS
-
+from flask import send_from_directory
 from auth import create_user, verify_user
 from auth import create_default_user
 
-app = Flask(__name__)
+app = Flask(
+    __name__,
+    static_folder=os.path.join(ROOT_DIR, "web-app", "dist"),
+    static_url_path="/"
+)
 CORS(app)
 
 # ── Camera state (unchanged) ──────────────────────────────────────────────
@@ -442,9 +446,13 @@ def reset_scores():
     return {"status": "all_reset"}
 
 @app.route("/")
-def home():
-    return "VisionSeninal Backend Running 🚀"
-# ── Entry point (unchanged) ────────────────────────────────────────────────
+def serve():
+    return send_from_directory(app.static_folder, "index.html")
+
+
+@app.route("/<path:path>")
+def static_files(path):
+    return send_from_directory(app.static_folder, path)
 
 if __name__ == "__main__":
     create_default_user()
