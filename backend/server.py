@@ -441,7 +441,9 @@ def reset_scores():
     temp_filter.reset_all()
     return {"status": "all_reset"}
 
-
+@app.route("/")
+def home():
+    return "VisionSeninal Backend Running 🚀"
 # ── Entry point (unchanged) ────────────────────────────────────────────────
 
 if __name__ == "__main__":
