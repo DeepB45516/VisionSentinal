@@ -1,6 +1,16 @@
 opencv-python>=4.8.0
 mediapipe>=0.10.32
 numpy>=1.24.0
+<<<<<<< HEAD
 Flask
 gunicorn
 flask-cors
+=======
+flask
+flask-cors
+opencv-python-headless
+mediapipe
+ultralytics
+google-generativeai
+pillow
+>>>>>>> 4a27da3 (final deployment files added)
